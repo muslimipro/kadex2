@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kadex2/constants.dart';
 import 'package:kadex2/screens/main/main_screen.dart';
 
@@ -13,11 +12,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Kadex 2.0',
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: bgColor,
-        textTheme: GoogleFonts.latoTextTheme(Theme.of(context).textTheme)
-            .apply(bodyColor: grayscaleDark),
-        canvasColor: grayscaleWhite,
+      // theme: ThemeData.dark().copyWith(
+      //   scaffoldBackgroundColor: grayscaleLight,
+      //   textTheme: TextTheme(),
+      //   // GoogleFonts.latoTextTheme(Theme.of(context).textTheme)
+      //   //     .apply(bodyColor: grayscaleDark),
+      //   canvasColor: grayscaleWhite,
+      // ),
+      theme: ThemeData(
+        fontFamily: 'Lato',
+        scaffoldBackgroundColor: grayscaleLight,
       ),
       home: MainScreen(),
     );

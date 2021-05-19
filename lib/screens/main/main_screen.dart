@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kadex2/constants.dart';
 import 'package:kadex2/screens/main/components/side_menu.dart';
+import 'package:kadex2/screens/portfolio/portfolio_screen.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -8,13 +8,14 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               width: 280,
               child: SideMenu(),
             ),
             Expanded(
-              child: Container(color: grayscaleLight),
+              child: PortfolioScreen(),
             ),
           ],
         ),

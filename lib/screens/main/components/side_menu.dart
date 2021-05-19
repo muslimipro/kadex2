@@ -19,6 +19,7 @@ class _SideMenuState extends State<SideMenu> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      elevation: 0,
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -264,14 +265,15 @@ class _SideMenuState extends State<SideMenu> {
                   SizedBox(height: 24),
                   TextButton(
                     onPressed: () {},
-                    style: TextButton.styleFrom(
-                      primary: primaryDefault,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                      backgroundColor: primaryLight,
-                      minimumSize: Size(200, 60),
-                    ),
+                    style: primaryLightButtonStyle,
+                    // TextButton.styleFrom(
+                    //   primary: primaryDefault,
+                    //   shape: const RoundedRectangleBorder(
+                    //     borderRadius: BorderRadius.all(Radius.circular(20)),
+                    //   ),
+                    //   backgroundColor: primaryLight,
+                    //   minimumSize: Size(200, 60),
+                    // ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
