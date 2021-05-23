@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kadex2/screens/main/components/side_menu.dart';
+import 'package:kadex2/screens/portfolio/newuser_screen.dart';
 import 'package:kadex2/screens/portfolio/portfolio_screen.dart';
 
 class MainScreen extends StatelessWidget {
@@ -15,7 +16,7 @@ class MainScreen extends StatelessWidget {
               child: SideMenu(),
             ),
             Expanded(
-              child: PortfolioScreen(),
+              child: Newuser(),
             ),
           ],
         ),

@@ -50,8 +50,10 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/
+    # - assets/images/gifs/i30_GIF.gif
+    - assets/gifs/
     - assets/icons/
+    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

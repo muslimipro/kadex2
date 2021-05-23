@@ -73,3 +73,9 @@ final ButtonStyle whiteButtonStyle = ButtonStyle(
     ),
   ),
 );
+
+final BoxShadow boxShadow = BoxShadow(
+  color: grayscaleAverage.withOpacity(0.22),
+  blurRadius: 10,
+  offset: Offset(0, 2),
+);

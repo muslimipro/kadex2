@@ -9,6 +9,10 @@ class Language extends StatefulWidget {
 }
 
 class _LanguageState extends State<Language> {
+  // final GlobalKey _langKey = GlobalKey();
+  LayerLink _layerLink = LayerLink();
+  OverlayEntry overlayEntry;
+
   var arrowUrl = "assets/icons/arrow_down.svg";
   var arrowColor = grayscaleAverage;
   var showLangTooltip = false;
@@ -23,6 +27,175 @@ class _LanguageState extends State<Language> {
   ];
   var langs = ['En', 'Ru', 'Ge'];
   // int _value = 1;
+
+  showLangOverlay(BuildContext context) {
+    RenderBox renderBox = context.findRenderObject();
+    Offset offset = renderBox.localToGlobal(Offset.zero);
+    Size size = renderBox.size;
+    OverlayState overlayState = Overlay.of(context);
+    overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        left: offset.dx,
+        top: offset.dy + size.height + 8,
+        child: CompositedTransformFollower(
+          link: this._layerLink,
+          offset: Offset(0, size.height + 8),
+          child: Container(
+            width: 80,
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: grayscaleWhite,
+              boxShadow: [boxShadow],
+            ),
+            child: Column(
+              children: [
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  onEnter: (PointerEvent details) {
+                    setState(() {
+                      hoverColor = grayscaleDark;
+                    });
+                  },
+                  onExit: (PointerEvent details) {
+                    setState(() {
+                      hoverColor = grayscaleAverage;
+                    });
+                  },
+                  child: GestureDetector(
+                    onTap: () {
+                      overlayEntry.remove();
+                      setState(() {
+                        selectedIndex = 0;
+                        showLangTooltip = !showLangTooltip;
+                        if (showLangTooltip == true) {
+                          arrowUrl = "assets/icons/arrow_up.svg";
+                        } else {
+                          arrowUrl = "assets/icons/arrow_down.svg";
+                        }
+                      });
+                    },
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Image.asset("assets/icons/flag_en.png", width: 24),
+                          SizedBox(width: 8),
+                          Text(
+                            'En',
+                            style: TextStyle(
+                              color: selectedIndex == 0
+                                  ? grayscaleDark
+                                  : hoverColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 8),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  onEnter: (PointerEvent details) {
+                    setState(() {
+                      hoverColor2 = grayscaleDark;
+                    });
+                  },
+                  onExit: (PointerEvent details) {
+                    setState(() {
+                      hoverColor2 = grayscaleAverage;
+                    });
+                  },
+                  child: GestureDetector(
+                    onTap: () {
+                      overlayEntry.remove();
+                      setState(() {
+                        selectedIndex = 1;
+                        showLangTooltip = !showLangTooltip;
+                        if (showLangTooltip == true) {
+                          arrowUrl = "assets/icons/arrow_up.svg";
+                        } else {
+                          arrowUrl = "assets/icons/arrow_down.svg";
+                        }
+                      });
+                    },
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Image.asset("assets/icons/flag_ru.png", width: 24),
+                          SizedBox(width: 8),
+                          Text(
+                            'Ru',
+                            style: TextStyle(
+                              color: selectedIndex == 1
+                                  ? grayscaleDark
+                                  : hoverColor2,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 8),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  onEnter: (PointerEvent details) {
+                    setState(() {
+                      hoverColor3 = grayscaleDark;
+                    });
+                  },
+                  onExit: (PointerEvent details) {
+                    setState(() {
+                      hoverColor3 = grayscaleAverage;
+                    });
+                  },
+                  child: GestureDetector(
+                    onTap: () {
+                      overlayEntry.remove();
+                      setState(() {
+                        selectedIndex = 2;
+                        showLangTooltip = !showLangTooltip;
+                        if (showLangTooltip == true) {
+                          arrowUrl = "assets/icons/arrow_up.svg";
+                        } else {
+                          arrowUrl = "assets/icons/arrow_down.svg";
+                        }
+                      });
+                    },
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Image.asset("assets/icons/flag_ge.png", width: 24),
+                          SizedBox(width: 8),
+                          Text(
+                            'Ge',
+                            style: TextStyle(
+                              color: selectedIndex == 2
+                                  ? grayscaleDark
+                                  : hoverColor3,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+    overlayState.insert(overlayEntry);
+  }
+
   @override
   Widget build(BuildContext context) {
     return
@@ -100,172 +273,177 @@ class _LanguageState extends State<Language> {
         onTap: () {
           setState(() {
             arrowColor = grayscaleAverage;
-            // showLangTooltip = !showLangTooltip;
+            showLangTooltip = !showLangTooltip;
             if (showLangTooltip == true) {
               arrowUrl = "assets/icons/arrow_up.svg";
+              showLangOverlay(context);
             } else {
               arrowUrl = "assets/icons/arrow_down.svg";
+              overlayEntry.remove();
             }
           });
         },
         child: Column(
           children: [
-            Container(
-              width: 80,
-              height: 24,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset(flagsUrl[selectedIndex]),
-                  Text(
-                    langs[selectedIndex],
-                    style: TextStyle(
-                      color: grayscaleDark,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
+            CompositedTransformTarget(
+              link: this._layerLink,
+              child: Container(
+                width: 80,
+                height: 24,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(flagsUrl[selectedIndex]),
+                    Text(
+                      langs[selectedIndex],
+                      style: TextStyle(
+                        color: grayscaleDark,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  SvgPicture.asset(
-                    arrowUrl,
-                    color: arrowColor,
-                  ),
-                ],
+                    SvgPicture.asset(
+                      arrowUrl,
+                      color: arrowColor,
+                    ),
+                  ],
+                ),
               ),
             ),
             // SizedBox(height: 8),
-            showLangTooltip == false
-                ? SizedBox.shrink()
-                : Container(
-                    width: 80,
-                    padding: EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: grayscaleWhite,
-                    ),
-                    child: Column(
-                      children: [
-                        MouseRegion(
-                          onEnter: (PointerEvent details) {
-                            setState(() {
-                              hoverColor = grayscaleDark;
-                            });
-                          },
-                          onExit: (PointerEvent details) {
-                            setState(() {
-                              hoverColor = grayscaleAverage;
-                            });
-                          },
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedIndex = 0;
-                                showLangTooltip = !showLangTooltip;
-                              });
-                            },
-                            child: Container(
-                              child: Row(
-                                children: [
-                                  Image.asset("assets/icons/flag_en.png",
-                                      width: 24),
-                                  SizedBox(width: 8),
-                                  Text(
-                                    'En',
-                                    style: TextStyle(
-                                      color: selectedIndex == 0
-                                          ? grayscaleDark
-                                          : hoverColor,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 8),
-                        MouseRegion(
-                          onEnter: (PointerEvent details) {
-                            setState(() {
-                              hoverColor2 = grayscaleDark;
-                            });
-                          },
-                          onExit: (PointerEvent details) {
-                            setState(() {
-                              hoverColor2 = grayscaleAverage;
-                            });
-                          },
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedIndex = 1;
-                                showLangTooltip = !showLangTooltip;
-                              });
-                            },
-                            child: Container(
-                              child: Row(
-                                children: [
-                                  Image.asset("assets/icons/flag_ru.png",
-                                      width: 24),
-                                  SizedBox(width: 8),
-                                  Text(
-                                    'Ru',
-                                    style: TextStyle(
-                                      color: selectedIndex == 1
-                                          ? grayscaleDark
-                                          : hoverColor2,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 8),
-                        MouseRegion(
-                          onEnter: (PointerEvent details) {
-                            setState(() {
-                              hoverColor3 = grayscaleDark;
-                            });
-                          },
-                          onExit: (PointerEvent details) {
-                            setState(() {
-                              hoverColor3 = grayscaleAverage;
-                            });
-                          },
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedIndex = 2;
-                                showLangTooltip = !showLangTooltip;
-                              });
-                            },
-                            child: Container(
-                              child: Row(
-                                children: [
-                                  Image.asset("assets/icons/flag_ge.png",
-                                      width: 24),
-                                  SizedBox(width: 8),
-                                  Text(
-                                    'Ge',
-                                    style: TextStyle(
-                                      color: selectedIndex == 2
-                                          ? grayscaleDark
-                                          : hoverColor3,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+            // showLangTooltip == false
+            //     ? SizedBox.shrink()
+            //     : Container(
+            //   width: 80,
+            //   padding: EdgeInsets.all(15),
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(20),
+            //     color: grayscaleWhite,
+            //   ),
+            //   child: Column(
+            //     children: [
+            //       MouseRegion(
+            //         onEnter: (PointerEvent details) {
+            //           setState(() {
+            //             hoverColor = grayscaleDark;
+            //           });
+            //         },
+            //         onExit: (PointerEvent details) {
+            //           setState(() {
+            //             hoverColor = grayscaleAverage;
+            //           });
+            //         },
+            //         child: GestureDetector(
+            //           onTap: () {
+            //             setState(() {
+            //               selectedIndex = 0;
+            //               showLangTooltip = !showLangTooltip;
+            //             });
+            //           },
+            //           child: Container(
+            //             child: Row(
+            //               children: [
+            //                 Image.asset("assets/icons/flag_en.png",
+            //                     width: 24),
+            //                 SizedBox(width: 8),
+            //                 Text(
+            //                   'En',
+            //                   style: TextStyle(
+            //                     color: selectedIndex == 0
+            //                         ? grayscaleDark
+            //                         : hoverColor,
+            //                     fontSize: 14,
+            //                     fontWeight: FontWeight.w600,
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       SizedBox(height: 8),
+            //       MouseRegion(
+            //         onEnter: (PointerEvent details) {
+            //           setState(() {
+            //             hoverColor2 = grayscaleDark;
+            //           });
+            //         },
+            //         onExit: (PointerEvent details) {
+            //           setState(() {
+            //             hoverColor2 = grayscaleAverage;
+            //           });
+            //         },
+            //         child: GestureDetector(
+            //           onTap: () {
+            //             setState(() {
+            //               selectedIndex = 1;
+            //               showLangTooltip = !showLangTooltip;
+            //             });
+            //           },
+            //           child: Container(
+            //             child: Row(
+            //               children: [
+            //                 Image.asset("assets/icons/flag_ru.png",
+            //                     width: 24),
+            //                 SizedBox(width: 8),
+            //                 Text(
+            //                   'Ru',
+            //                   style: TextStyle(
+            //                     color: selectedIndex == 1
+            //                         ? grayscaleDark
+            //                         : hoverColor2,
+            //                     fontSize: 14,
+            //                     fontWeight: FontWeight.w600,
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       SizedBox(height: 8),
+            //       MouseRegion(
+            //         onEnter: (PointerEvent details) {
+            //           setState(() {
+            //             hoverColor3 = grayscaleDark;
+            //           });
+            //         },
+            //         onExit: (PointerEvent details) {
+            //           setState(() {
+            //             hoverColor3 = grayscaleAverage;
+            //           });
+            //         },
+            //         child: GestureDetector(
+            //           onTap: () {
+            //             setState(() {
+            //               selectedIndex = 2;
+            //               showLangTooltip = !showLangTooltip;
+            //             });
+            //           },
+            //           child: Container(
+            //             child: Row(
+            //               children: [
+            //                 Image.asset("assets/icons/flag_ge.png",
+            //                     width: 24),
+            //                 SizedBox(width: 8),
+            //                 Text(
+            //                   'Ge',
+            //                   style: TextStyle(
+            //                     color: selectedIndex == 2
+            //                         ? grayscaleDark
+            //                         : hoverColor3,
+            //                     fontSize: 14,
+            //                     fontWeight: FontWeight.w600,
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       )
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),

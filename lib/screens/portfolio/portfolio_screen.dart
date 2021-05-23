@@ -104,41 +104,62 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                               ),
                       ),
                       SizedBox(width: 20),
-                      TextButton(
-                        onPressed:
-                            (activated || recalculateLoading || activateLoading)
-                                ? null
-                                : () {
-                                    recalculatePressed();
-                                  },
-                        style: (activated || activateLoading)
-                            ? whiteButtonStyle
-                            : primaryLightButtonStyle,
-                        child: recalculateLoading
-                            ? SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: CircularProgressIndicator(
-                                  valueColor: new AlwaysStoppedAnimation<Color>(
-                                      primaryDefault),
-                                ),
-                              )
-                            : Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Recalculate',
-                                    style: TextStyle(
-                                      fontFamily: 'Lato',
-                                      color: (activated || activateLoading)
-                                          ? grayscaleAverage
-                                          : primaryDefault,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                      Tooltip(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                        message:
+                            'If you have replenished/withdrawn\n your balance on the exchange, we\n recommend recalculating the amount\n and restarting the portfolio',
+                        verticalOffset: 35,
+                        height: 112,
+                        textStyle: TextStyle(
+                          color: grayscaleDark,
+                          fontSize: 14,
+                        ),
+                        decoration: BoxDecoration(
+                          color: grayscaleWhite,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          boxShadow: [boxShadow],
+                        ),
+                        child: TextButton(
+                          onPressed: (activated ||
+                                  recalculateLoading ||
+                                  activateLoading)
+                              ? null
+                              : () {
+                                  recalculatePressed();
+                                },
+                          style: (activated || activateLoading)
+                              ? whiteButtonStyle
+                              : primaryLightButtonStyle,
+                          child: recalculateLoading
+                              ? SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(
+                                    valueColor:
+                                        new AlwaysStoppedAnimation<Color>(
+                                            primaryDefault),
                                   ),
-                                ],
-                              ),
+                                )
+                              : Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Recalculate',
+                                      style: TextStyle(
+                                        fontFamily: 'Lato',
+                                        color: (activated || activateLoading)
+                                            ? grayscaleAverage
+                                            : primaryDefault,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                        ),
                       ),
                       SizedBox(width: 20),
                       TextButton(
@@ -170,11 +191,63 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                   Header(),
                 ],
               ),
-              // Container(
-              //   height: 100,
-              //   width: 200,
-              //   color: Colors.blueAccent,
-              // ),
+              SizedBox(height: 40),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      height: 488,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(40)),
+                        color: grayscaleWhite,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 30),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      height: 488,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(40)),
+                        color: grayscaleWhite,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(height: 40),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      height: 488,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(40)),
+                        color: grayscaleWhite,
+                      ),
+                      child: Expanded(
+                        child: Image.asset(
+                          "assets/gifs/i30_GIF (alternative).gif",
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 30),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      height: 488,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(40)),
+                        color: grayscaleWhite,
+                      ),
+                    ),
+                  )
+                ],
+              )
             ],
           ),
         ),
