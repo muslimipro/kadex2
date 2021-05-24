@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kadex2/constants.dart';
 import 'package:kadex2/screens/main/main_screen.dart';
+import 'package:kadex2/screens/portfolio/portfolio.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +24,11 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Lato',
         scaffoldBackgroundColor: grayscaleLight,
       ),
-      home: MainScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MainScreen(),
+        '/portfolio': (context) => Portfolio(),
+      },
     );
   }
 }

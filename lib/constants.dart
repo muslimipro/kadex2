@@ -18,7 +18,7 @@ const primaryExtralight = Color(0xFFF5F1FD);
 
 const defaultPadding = 16.0;
 
-double buttonWidth = 195.0;
+double buttonWidth = 175.0;
 
 final ButtonStyle primaryLightButtonStyle = ButtonStyle(
   backgroundColor: MaterialStateProperty.all<Color>(primaryLight),

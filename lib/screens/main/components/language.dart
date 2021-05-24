@@ -42,7 +42,7 @@ class _LanguageState extends State<Language> {
           offset: Offset(0, size.height + 8),
           child: Container(
             width: 80,
-            padding: EdgeInsets.all(15),
+            padding: EdgeInsets.all(0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: grayscaleWhite,
@@ -50,39 +50,44 @@ class _LanguageState extends State<Language> {
             ),
             child: Column(
               children: [
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  onEnter: (PointerEvent details) {
+                TextButton(
+                  onPressed: () {
+                    overlayEntry.remove();
                     setState(() {
-                      hoverColor = grayscaleDark;
+                      selectedIndex = 0;
+                      showLangTooltip = !showLangTooltip;
+                      if (showLangTooltip == true) {
+                        arrowUrl = "assets/icons/arrow_up.svg";
+                      } else {
+                        arrowUrl = "assets/icons/arrow_down.svg";
+                      }
                     });
                   },
-                  onExit: (PointerEvent details) {
-                    setState(() {
-                      hoverColor = grayscaleAverage;
-                    });
-                  },
-                  child: GestureDetector(
-                    onTap: () {
-                      overlayEntry.remove();
-                      setState(() {
-                        selectedIndex = 0;
-                        showLangTooltip = !showLangTooltip;
-                        if (showLangTooltip == true) {
-                          arrowUrl = "assets/icons/arrow_up.svg";
-                        } else {
-                          arrowUrl = "assets/icons/arrow_down.svg";
-                        }
-                      });
-                    },
-                    child: Container(
-                      child: Row(
+                  style: whiteButtonStyle.copyWith(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                    ),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        EdgeInsets.all(0.0)),
+                    minimumSize: MaterialStateProperty.all<Size>(Size(0, 0)),
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 15),
+                      Row(
                         children: [
+                          SizedBox(width: 15),
                           Image.asset("assets/icons/flag_en.png", width: 24),
                           SizedBox(width: 8),
                           Text(
                             'En',
                             style: TextStyle(
+                              decoration: TextDecoration.none,
                               color: selectedIndex == 0
                                   ? grayscaleDark
                                   : hoverColor,
@@ -92,101 +97,111 @@ class _LanguageState extends State<Language> {
                           ),
                         ],
                       ),
-                    ),
+                      SizedBox(height: 4),
+                    ],
                   ),
                 ),
-                SizedBox(height: 8),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  onEnter: (PointerEvent details) {
+                // SizedBox(height: 8),
+                TextButton(
+                  onPressed: () {
+                    overlayEntry.remove();
                     setState(() {
-                      hoverColor2 = grayscaleDark;
+                      selectedIndex = 1;
+                      showLangTooltip = !showLangTooltip;
+                      if (showLangTooltip == true) {
+                        arrowUrl = "assets/icons/arrow_up.svg";
+                      } else {
+                        arrowUrl = "assets/icons/arrow_down.svg";
+                      }
                     });
                   },
-                  onExit: (PointerEvent details) {
-                    setState(() {
-                      hoverColor2 = grayscaleAverage;
-                    });
-                  },
-                  child: GestureDetector(
-                    onTap: () {
-                      overlayEntry.remove();
-                      setState(() {
-                        selectedIndex = 1;
-                        showLangTooltip = !showLangTooltip;
-                        if (showLangTooltip == true) {
-                          arrowUrl = "assets/icons/arrow_up.svg";
-                        } else {
-                          arrowUrl = "assets/icons/arrow_down.svg";
-                        }
-                      });
-                    },
-                    child: Container(
-                      child: Row(
+                  style: whiteButtonStyle.copyWith(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      ),
+                    ),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        EdgeInsets.all(0.0)),
+                    minimumSize: MaterialStateProperty.all<Size>(Size(0, 0)),
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 4),
+                      Row(
                         children: [
+                          SizedBox(width: 15),
                           Image.asset("assets/icons/flag_ru.png", width: 24),
                           SizedBox(width: 8),
                           Text(
                             'Ru',
                             style: TextStyle(
+                              decoration: TextDecoration.none,
                               color: selectedIndex == 1
                                   ? grayscaleDark
-                                  : hoverColor2,
+                                  : hoverColor,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                         ],
                       ),
-                    ),
+                      SizedBox(height: 4),
+                    ],
                   ),
                 ),
-                SizedBox(height: 8),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  onEnter: (PointerEvent details) {
+                // SizedBox(height: 8),
+                TextButton(
+                  onPressed: () {
+                    overlayEntry.remove();
                     setState(() {
-                      hoverColor3 = grayscaleDark;
+                      selectedIndex = 2;
+                      showLangTooltip = !showLangTooltip;
+                      if (showLangTooltip == true) {
+                        arrowUrl = "assets/icons/arrow_up.svg";
+                      } else {
+                        arrowUrl = "assets/icons/arrow_down.svg";
+                      }
                     });
                   },
-                  onExit: (PointerEvent details) {
-                    setState(() {
-                      hoverColor3 = grayscaleAverage;
-                    });
-                  },
-                  child: GestureDetector(
-                    onTap: () {
-                      overlayEntry.remove();
-                      setState(() {
-                        selectedIndex = 2;
-                        showLangTooltip = !showLangTooltip;
-                        if (showLangTooltip == true) {
-                          arrowUrl = "assets/icons/arrow_up.svg";
-                        } else {
-                          arrowUrl = "assets/icons/arrow_down.svg";
-                        }
-                      });
-                    },
-                    child: Container(
-                      child: Row(
+                  style: whiteButtonStyle.copyWith(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
+                      ),
+                    ),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        EdgeInsets.all(0.0)),
+                    minimumSize: MaterialStateProperty.all<Size>(Size(0, 0)),
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 4),
+                      Row(
                         children: [
+                          SizedBox(width: 15),
                           Image.asset("assets/icons/flag_ge.png", width: 24),
                           SizedBox(width: 8),
                           Text(
                             'Ge',
                             style: TextStyle(
+                              decoration: TextDecoration.none,
                               color: selectedIndex == 2
                                   ? grayscaleDark
-                                  : hoverColor3,
+                                  : hoverColor,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                         ],
                       ),
-                    ),
+                      SizedBox(height: 15),
+                    ],
                   ),
-                )
+                ),
               ],
             ),
           ),

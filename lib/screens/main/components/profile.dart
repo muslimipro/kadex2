@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:kadex2/constants.dart';
 
 class Profile extends StatefulWidget {
@@ -14,7 +15,7 @@ class _ProfileState extends State<Profile> {
   OverlayEntry overlayEntry;
   var showLangTooltip = false;
 
-  showLangOverlay(BuildContext context) {
+  showProfOverlay(BuildContext context) {
     RenderBox renderBox = context.findRenderObject();
     Offset offset = renderBox.localToGlobal(Offset.zero);
     Size size = renderBox.size;
@@ -27,7 +28,7 @@ class _ProfileState extends State<Profile> {
           offset: Offset(-(118 - size.height), size.height + 8),
           child: Container(
             width: 118,
-            padding: EdgeInsets.all(15),
+            padding: EdgeInsets.all(0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: grayscaleWhite,
@@ -36,14 +37,92 @@ class _ProfileState extends State<Profile> {
             child: Column(
               children: [
                 TextButton(
-                  style: whiteButtonStyle,
-                  onPressed: () {},
-                  child: Text('Settings'),
+                  style: whiteButtonStyle.copyWith(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                    ),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        EdgeInsets.all(0.0)),
+                    minimumSize: MaterialStateProperty.all<Size>(Size(0, 0)),
+                  ),
+                  onPressed: () {
+                    overlayEntry.remove();
+                    setState(() {
+                      showLangTooltip = !showLangTooltip;
+                    });
+                  },
+                  child: Column(
+                    children: [
+                      SizedBox(height: 12),
+                      Row(
+                        children: [
+                          SizedBox(width: 16),
+                          SvgPicture.asset(
+                            "assets/icons/settings.svg",
+                            height: 24,
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            'Settings',
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: grayscaleDark,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 4),
+                    ],
+                  ),
                 ),
                 TextButton(
-                  style: whiteButtonStyle,
-                  onPressed: () {},
-                  child: Text('Log out'),
+                  style: whiteButtonStyle.copyWith(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
+                      ),
+                    ),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        EdgeInsets.all(0.0)),
+                    minimumSize: MaterialStateProperty.all<Size>(Size(0, 0)),
+                  ),
+                  onPressed: () {
+                    overlayEntry.remove();
+                    setState(() {
+                      showLangTooltip = !showLangTooltip;
+                    });
+                  },
+                  child: Column(
+                    children: [
+                      SizedBox(height: 4),
+                      Row(
+                        children: [
+                          SizedBox(width: 16),
+                          SvgPicture.asset(
+                            "assets/icons/log_out.svg",
+                            height: 24,
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            'Log out',
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: grayscaleDark,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 12),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -83,7 +162,7 @@ class _ProfileState extends State<Profile> {
               setState(() {
                 showLangTooltip = !showLangTooltip;
                 if (showLangTooltip == true) {
-                  showLangOverlay(context);
+                  showProfOverlay(context);
                 } else {
                   overlayEntry.remove();
                 }

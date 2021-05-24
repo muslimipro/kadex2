@@ -228,11 +228,6 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(40)),
                         color: grayscaleWhite,
                       ),
-                      child: Expanded(
-                        child: Image.asset(
-                          "assets/gifs/i30_GIF (alternative).gif",
-                        ),
-                      ),
                     ),
                   ),
                   SizedBox(width: 30),
