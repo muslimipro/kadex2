@@ -13,7 +13,7 @@ class _ProfileState extends State<Profile> {
 
   LayerLink _layerLink = LayerLink();
   OverlayEntry overlayEntry;
-  var showLangTooltip = false;
+  var showTooltip = false;
 
   showProfOverlay(BuildContext context) {
     RenderBox renderBox = context.findRenderObject();
@@ -53,7 +53,7 @@ class _ProfileState extends State<Profile> {
                   onPressed: () {
                     overlayEntry.remove();
                     setState(() {
-                      showLangTooltip = !showLangTooltip;
+                      showTooltip = !showTooltip;
                     });
                   },
                   child: Column(
@@ -97,7 +97,7 @@ class _ProfileState extends State<Profile> {
                   onPressed: () {
                     overlayEntry.remove();
                     setState(() {
-                      showLangTooltip = !showLangTooltip;
+                      showTooltip = !showTooltip;
                     });
                   },
                   child: Column(
@@ -160,8 +160,8 @@ class _ProfileState extends State<Profile> {
           child: GestureDetector(
             onTap: () {
               setState(() {
-                showLangTooltip = !showLangTooltip;
-                if (showLangTooltip == true) {
+                showTooltip = !showTooltip;
+                if (showTooltip == true) {
                   showProfOverlay(context);
                 } else {
                   overlayEntry.remove();

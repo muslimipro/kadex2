@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kadex2/constants.dart';
 import 'package:kadex2/screens/main/components/header.dart';
+import 'package:kadex2/screens/portfolio/components/select_index.dart';
 
 class PortfolioScreen extends StatefulWidget {
   @override
@@ -162,30 +163,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         ),
                       ),
                       SizedBox(width: 20),
-                      TextButton(
-                        onPressed: () {},
-                        style: whiteButtonStyle,
-                        child: Container(
-                          width: buttonWidth,
-                          padding: EdgeInsets.only(left: 24, right: 18),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'i30',
-                                style: TextStyle(
-                                  color: grayscaleDark,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              SvgPicture.asset(
-                                "assets/icons/index_arrow_down.svg",
-                                height: 24,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      SelectIndex(),
                     ],
                   ),
                   Header(),
