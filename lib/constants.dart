@@ -16,6 +16,14 @@ const primaryDark = Color(0xFF4F16CD);
 const primaryLight = Color(0xFFE4DCFF);
 const primaryExtralight = Color(0xFFF5F1FD);
 
+const secondaryDefault = Color(0xFFDC4FFF);
+const secondaryLight = Color(0xFFF6D1FF);
+
+const otherSuccess = Color(0xFF3DCAB0);
+const otherError = Color(0xFFFF4F79);
+const otherAzure = Color(0xFF2CC7DC);
+const otherBlue = Color(0xFF3177FF);
+
 const defaultPadding = 16.0;
 
 double buttonWidth = 175.0;
@@ -78,4 +86,18 @@ final BoxShadow boxShadow = BoxShadow(
   color: grayscaleAverage.withOpacity(0.22),
   blurRadius: 10,
   offset: Offset(0, 2),
+);
+
+final TextStyle blockTitleStyle = TextStyle(
+  color: grayscaleDark,
+  fontSize: 24,
+  fontWeight: FontWeight.w600,
+);
+
+final BoxDecoration borderedBox = BoxDecoration(
+  border: Border.all(
+    width: 1,
+    color: grayscaleLight,
+  ),
+  borderRadius: BorderRadius.circular(20),
 );

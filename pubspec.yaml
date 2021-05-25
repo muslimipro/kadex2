@@ -35,6 +35,7 @@ dependencies:
   provider: ^5.0.0
 
   flutter_gifimage: ^1.0.1
+  flutter_advanced_switch: ^2.0.2+2
 
 dev_dependencies:
   flutter_test:

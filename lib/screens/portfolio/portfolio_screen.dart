@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kadex2/constants.dart';
 import 'package:kadex2/screens/main/components/header.dart';
+import 'package:kadex2/screens/portfolio/components/portfolio_block.dart';
 import 'package:kadex2/screens/portfolio/components/select_index.dart';
 
 class PortfolioScreen extends StatefulWidget {
@@ -15,6 +16,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   bool recalculate = false;
   bool activateLoading = false;
   bool recalculateLoading = false;
+  List<bool> isSelected = <bool>[true, false, false];
 
   activatePressed() async {
     setState(() {
@@ -53,7 +55,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     return SafeArea(
       child: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.fromLTRB(40, 40, 80, 0),
+          padding: EdgeInsets.fromLTRB(40, 40, 40, 0),
           child: Column(
             children: [
               Row(
@@ -172,25 +174,55 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
               SizedBox(height: 40),
               Row(
                 children: [
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      height: 488,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(40)),
-                        color: grayscaleWhite,
-                      ),
-                    ),
-                  ),
+                  PortfolioBlock(),
                   SizedBox(width: 30),
                   Expanded(
                     flex: 3,
-                    child: Container(
-                      height: 488,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(40)),
-                        color: grayscaleWhite,
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(width: 30),
+                            Text("My portfolio history",
+                                style: blockTitleStyle),
+                          ],
+                        ),
+                        SizedBox(height: 20),
+                        Container(
+                          height: 488,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(40)),
+                            color: grayscaleWhite,
+                          ),
+                          child: Column(
+                            children: [
+                              ToggleButtons(
+                                constraints: BoxConstraints.expand(width: 150),
+                                children: <Widget>[
+                                  Text('Day'),
+                                  Text('Week'),
+                                  Text('Month'),
+                                ],
+                                onPressed: (int index) {
+                                  setState(() {
+                                    for (int buttonIndex = 0;
+                                        buttonIndex < isSelected.length;
+                                        buttonIndex++) {
+                                      if (buttonIndex == index) {
+                                        isSelected[buttonIndex] = true;
+                                      } else {
+                                        isSelected[buttonIndex] = false;
+                                      }
+                                    }
+                                  });
+                                },
+                                isSelected: isSelected,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   )
                 ],
@@ -200,27 +232,52 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                 children: [
                   Expanded(
                     flex: 2,
-                    child: Container(
-                      height: 488,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(40)),
-                        color: grayscaleWhite,
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(width: 30),
+                            Text("Top of coins", style: blockTitleStyle),
+                          ],
+                        ),
+                        SizedBox(height: 20),
+                        Container(
+                          height: 488,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(40)),
+                            color: grayscaleWhite,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(width: 30),
                   Expanded(
                     flex: 2,
-                    child: Container(
-                      height: 488,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(40)),
-                        color: grayscaleWhite,
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(width: 30),
+                            Text("List of coins", style: blockTitleStyle),
+                          ],
+                        ),
+                        SizedBox(height: 20),
+                        Container(
+                          height: 488,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(40)),
+                            color: grayscaleWhite,
+                          ),
+                        ),
+                      ],
                     ),
                   )
                 ],
-              )
+              ),
+              SizedBox(height: 40),
             ],
           ),
         ),

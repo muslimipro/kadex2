@@ -261,7 +261,7 @@ class _SelectIndexState extends State<SelectIndex> {
               arrowUrl = "assets/icons/index_arrow_up.svg";
               showOverlay(context);
             } else {
-              arrowUrl = "assets/icons/index_arrow_up.svg";
+              arrowUrl = "assets/icons/index_arrow_down.svg";
               overlayEntry.remove();
             }
           });

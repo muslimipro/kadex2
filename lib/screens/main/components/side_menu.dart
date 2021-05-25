@@ -47,7 +47,7 @@ class _SideMenuState extends State<SideMenu> {
                       color:
                           currentDrawer == 1 ? primaryDefault : grayscaleWhite,
                     ),
-                    SizedBox(width: 38),
+                    SizedBox(width: 36),
                     SvgPicture.asset(
                       "assets/icons/menu1_suitcase.svg",
                       color: currentDrawer == 1
@@ -85,7 +85,7 @@ class _SideMenuState extends State<SideMenu> {
                         color: currentDrawer == 2
                             ? primaryDefault
                             : grayscaleWhite),
-                    SizedBox(width: 38),
+                    SizedBox(width: 36),
                     SvgPicture.asset(
                       "assets/icons/menu2_graph.svg",
                       color: currentDrawer == 2
@@ -123,7 +123,7 @@ class _SideMenuState extends State<SideMenu> {
                         color: currentDrawer == 3
                             ? primaryDefault
                             : grayscaleWhite),
-                    SizedBox(width: 38),
+                    SizedBox(width: 36),
                     SvgPicture.asset(
                       "assets/icons/menu3_network.svg",
                       color: currentDrawer == 3
@@ -161,7 +161,7 @@ class _SideMenuState extends State<SideMenu> {
                         color: currentDrawer == 4
                             ? primaryDefault
                             : grayscaleWhite),
-                    SizedBox(width: 38),
+                    SizedBox(width: 36),
                     SvgPicture.asset(
                       "assets/icons/menu4_book.svg",
                       color: currentDrawer == 4
@@ -209,7 +209,7 @@ class _SideMenuState extends State<SideMenu> {
                         color: currentDrawer == 5
                             ? primaryDefault
                             : grayscaleWhite),
-                    SizedBox(width: 38),
+                    SizedBox(width: 36),
                     SvgPicture.asset(
                       //   title: "Technical support",
                       //   svgSrc: "assets/icons/menu5_headset.svg",

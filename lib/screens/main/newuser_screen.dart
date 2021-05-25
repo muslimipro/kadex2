@@ -41,9 +41,20 @@ class _NewuserState extends State<Newuser> with TickerProviderStateMixin {
         child: Container(
           padding: EdgeInsets.fromLTRB(40, 40, 80, 0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Header(),
-              SizedBox(height: 40),
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  SizedBox(width: 30),
+                  Text(
+                    "Choose a portfolio",
+                    style: blockTitleStyle,
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
               Row(
                 children: [
                   Expanded(
@@ -138,10 +149,10 @@ class _NewuserState extends State<Newuser> with TickerProviderStateMixin {
                                   period: Duration(seconds: 10));
                             },
                             onExit: (PointerEvent details) {
-                              // _i50gifController.animateTo(0,
-                              //     duration: Duration(milliseconds: 300));
-                              _i50gifController.stop();
-                              _i50gifController.reset();
+                              _i50gifController.animateTo(0,
+                                  duration: Duration(milliseconds: 300));
+                              // _i50gifController.stop();
+                              // _i50gifController.reset();
                             },
                             child: GestureDetector(
                               onTap: () {
@@ -197,10 +208,10 @@ class _NewuserState extends State<Newuser> with TickerProviderStateMixin {
                                   period: Duration(seconds: 10));
                             },
                             onExit: (PointerEvent details) {
-                              // _i100gifController.animateTo(0,
-                              //     duration: Duration(milliseconds: 300));
-                              _i100gifController.stop();
-                              _i100gifController.reset();
+                              _i100gifController.animateTo(0,
+                                  duration: Duration(milliseconds: 300));
+                              // _i100gifController.stop();
+                              // _i100gifController.reset();
                             },
                             child: GestureDetector(
                               onTap: () {
@@ -292,6 +303,7 @@ class _NewuserState extends State<Newuser> with TickerProviderStateMixin {
                   ),
                 ],
               ),
+              SizedBox(height: 40),
             ],
           ),
         ),

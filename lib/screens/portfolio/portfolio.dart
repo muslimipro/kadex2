@@ -12,7 +12,7 @@ class Portfolio extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: 280,
+              width: 250,
               child: SideMenu(),
             ),
             Expanded(
