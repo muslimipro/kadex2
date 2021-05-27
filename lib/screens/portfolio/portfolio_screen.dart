@@ -1,22 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kadex2/constants.dart';
 import 'package:kadex2/screens/main/components/header.dart';
+import 'package:kadex2/screens/portfolio/components/line_chart.dart';
 import 'package:kadex2/screens/portfolio/components/portfolio_block.dart';
 import 'package:kadex2/screens/portfolio/components/select_index.dart';
+import 'package:kadex2/screens/portfolio/components/switcher_button.dart';
 
 class PortfolioScreen extends StatefulWidget {
   @override
   _PortfolioScreenState createState() => _PortfolioScreenState();
 }
 
-class _PortfolioScreenState extends State<PortfolioScreen> {
+class _PortfolioScreenState extends State<PortfolioScreen>
+    with TickerProviderStateMixin {
   bool activated = true;
   bool recalculate = false;
   bool activateLoading = false;
   bool recalculateLoading = false;
   List<bool> isSelected = <bool>[true, false, false];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   activatePressed() async {
     setState(() {
@@ -191,34 +205,15 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         SizedBox(height: 20),
                         Container(
                           height: 488,
+                          padding: EdgeInsets.all(30),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(40)),
                             color: grayscaleWhite,
                           ),
                           child: Column(
                             children: [
-                              ToggleButtons(
-                                constraints: BoxConstraints.expand(width: 150),
-                                children: <Widget>[
-                                  Text('Day'),
-                                  Text('Week'),
-                                  Text('Month'),
-                                ],
-                                onPressed: (int index) {
-                                  setState(() {
-                                    for (int buttonIndex = 0;
-                                        buttonIndex < isSelected.length;
-                                        buttonIndex++) {
-                                      if (buttonIndex == index) {
-                                        isSelected[buttonIndex] = true;
-                                      } else {
-                                        isSelected[buttonIndex] = false;
-                                      }
-                                    }
-                                  });
-                                },
-                                isSelected: isSelected,
-                              ),
+                              SwitcherButton(),
+                              PortfolioLineChart(),
                             ],
                           ),
                         ),

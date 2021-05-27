@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_gifimage/flutter_gifimage.dart';
 import 'package:kadex2/constants.dart';
 import 'package:kadex2/screens/main/components/header.dart';
+import 'package:lottie/lottie.dart';
 
 class Newuser extends StatefulWidget {
   @override
@@ -10,6 +11,7 @@ class Newuser extends StatefulWidget {
 }
 
 class _NewuserState extends State<Newuser> with TickerProviderStateMixin {
+  AnimationController _i30jsoncontroller;
   GifController _i50gifController;
   GifController _i30gifController;
   GifController _i100gifController;
@@ -23,6 +25,7 @@ class _NewuserState extends State<Newuser> with TickerProviderStateMixin {
     _i30gifController = GifController(vsync: this);
     _i100gifController = GifController(vsync: this);
     _iCustomgifController = GifController(vsync: this);
+    _i30jsoncontroller = AnimationController(vsync: this);
   }
 
   @override
@@ -31,6 +34,7 @@ class _NewuserState extends State<Newuser> with TickerProviderStateMixin {
     _i30gifController.dispose();
     _i100gifController.dispose();
     _iCustomgifController.dispose();
+    _i30jsoncontroller.dispose();
     super.dispose();
   }
 
@@ -259,6 +263,10 @@ class _NewuserState extends State<Newuser> with TickerProviderStateMixin {
                               setState(() {
                                 icustomUrl = "assets/gifs/icustom_GIF.gif";
                               });
+                              _i30jsoncontroller.duration =
+                                  Duration(seconds: 6);
+                              _i30jsoncontroller.repeat();
+                              // _i30jsoncontroller.forward();
 
                               // _iCustomgifController = GifController(vsync: this);
                               // _iCustomgifController.repeat(
@@ -270,6 +278,9 @@ class _NewuserState extends State<Newuser> with TickerProviderStateMixin {
                               setState(() {
                                 icustomUrl = "assets/images/icustom_GIF_bg.png";
                               });
+                              _i30jsoncontroller.duration =
+                                  Duration(milliseconds: 300);
+                              _i30jsoncontroller.animateTo(0);
 
                               // _iCustomgifController.animateTo(0,
                               //     duration: Duration(milliseconds: 500));
@@ -280,9 +291,12 @@ class _NewuserState extends State<Newuser> with TickerProviderStateMixin {
                               },
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
-                                child: Image.asset(
-                                  icustomUrl,
-                                ),
+                                child: Lottie.asset(
+                                    'assets/animations/i30_blur.json',
+                                    controller: _i30jsoncontroller),
+                                // Image.asset(
+                                //   icustomUrl,
+                                // ),
                               ),
                             ),
                           ),

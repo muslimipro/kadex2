@@ -31,10 +31,11 @@ dependencies:
 
   google_fonts: ^2.0.0
   flutter_svg: ^0.22.0
-  fl_chart: ^0.35.0
+  fl_chart: ^0.36.1
   provider: ^5.0.0
 
   flutter_gifimage: ^1.0.1
+  lottie: ^1.0.1
   flutter_advanced_switch: ^2.0.2+2
 
 dev_dependencies:
@@ -54,6 +55,7 @@ flutter:
 
   assets:
     # - assets/images/gifs/i30_GIF.gif
+    - assets/animations/
     - assets/gifs/
     - assets/icons/
     - assets/images/

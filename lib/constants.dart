@@ -101,3 +101,14 @@ final BoxDecoration borderedBox = BoxDecoration(
   ),
   borderRadius: BorderRadius.circular(20),
 );
+
+TextStyle switcherTextStyle = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.w600,
+  color: primaryDefault,
+);
+TextStyle switcherBackTextStyle = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.w400,
+  color: grayscaleDarkmode,
+);
