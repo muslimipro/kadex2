@@ -4,10 +4,10 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kadex2/constants.dart';
 import 'package:kadex2/screens/main/components/header.dart';
-import 'package:kadex2/screens/portfolio/components/line_chart.dart';
+import 'package:kadex2/screens/portfolio/components/history_block.dart';
 import 'package:kadex2/screens/portfolio/components/portfolio_block.dart';
 import 'package:kadex2/screens/portfolio/components/select_index.dart';
-import 'package:kadex2/screens/portfolio/components/switcher_button.dart';
+import 'package:kadex2/screens/portfolio/components/top_coins_block.dart';
 
 class PortfolioScreen extends StatefulWidget {
   @override
@@ -21,6 +21,15 @@ class _PortfolioScreenState extends State<PortfolioScreen>
   bool activateLoading = false;
   bool recalculateLoading = false;
   List<bool> isSelected = <bool>[true, false, false];
+
+  // Container circleContainer = Container(
+  //   height: 10,
+  //   width: 10,
+  //   decoration: BoxDecoration(
+  //     color: Colors.blue,
+  //     shape: BoxShape.circle,
+  //   ),
+  // );
 
   @override
   void initState() {
@@ -190,63 +199,13 @@ class _PortfolioScreenState extends State<PortfolioScreen>
                 children: [
                   PortfolioBlock(),
                   SizedBox(width: 30),
-                  Expanded(
-                    flex: 3,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            SizedBox(width: 30),
-                            Text("My portfolio history",
-                                style: blockTitleStyle),
-                          ],
-                        ),
-                        SizedBox(height: 20),
-                        Container(
-                          height: 488,
-                          padding: EdgeInsets.all(30),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(40)),
-                            color: grayscaleWhite,
-                          ),
-                          child: Column(
-                            children: [
-                              SwitcherButton(),
-                              PortfolioLineChart(),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
+                  HistoryBlock(),
                 ],
               ),
               SizedBox(height: 40),
               Row(
                 children: [
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            SizedBox(width: 30),
-                            Text("Top of coins", style: blockTitleStyle),
-                          ],
-                        ),
-                        SizedBox(height: 20),
-                        Container(
-                          height: 488,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(40)),
-                            color: grayscaleWhite,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  TopCoinsBlock(),
                   SizedBox(width: 30),
                   Expanded(
                     flex: 2,
@@ -261,7 +220,7 @@ class _PortfolioScreenState extends State<PortfolioScreen>
                         ),
                         SizedBox(height: 20),
                         Container(
-                          height: 488,
+                          height: 637,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(40)),
                             color: grayscaleWhite,

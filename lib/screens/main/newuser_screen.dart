@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_gifimage/flutter_gifimage.dart';
 import 'package:kadex2/constants.dart';
 import 'package:kadex2/screens/main/components/header.dart';
 import 'package:lottie/lottie.dart';
@@ -12,29 +11,26 @@ class Newuser extends StatefulWidget {
 
 class _NewuserState extends State<Newuser> with TickerProviderStateMixin {
   AnimationController _i30jsoncontroller;
-  GifController _i50gifController;
-  GifController _i30gifController;
-  GifController _i100gifController;
-  GifController _iCustomgifController;
-  String icustomUrl = "assets/images/icustom_GIF_bg.png";
+  AnimationController _i50jsoncontroller;
+  AnimationController _i100jsoncontroller;
+  AnimationController _iCustomjsoncontroller;
+  int hoveredIndex = -1;
 
   @override
   void initState() {
     super.initState();
-    _i50gifController = GifController(vsync: this);
-    _i30gifController = GifController(vsync: this);
-    _i100gifController = GifController(vsync: this);
-    _iCustomgifController = GifController(vsync: this);
     _i30jsoncontroller = AnimationController(vsync: this);
+    _i50jsoncontroller = AnimationController(vsync: this);
+    _i100jsoncontroller = AnimationController(vsync: this);
+    _iCustomjsoncontroller = AnimationController(vsync: this);
   }
 
   @override
   void dispose() {
-    _i50gifController.dispose();
-    _i30gifController.dispose();
-    _i100gifController.dispose();
-    _iCustomgifController.dispose();
     _i30jsoncontroller.dispose();
+    _i50jsoncontroller.dispose();
+    _i100jsoncontroller.dispose();
+    _iCustomjsoncontroller.dispose();
     super.dispose();
   }
 
@@ -62,129 +58,123 @@ class _NewuserState extends State<Newuser> with TickerProviderStateMixin {
               Row(
                 children: [
                   Expanded(
-                    child: Container(
-                      padding: EdgeInsets.all(30),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(40)),
-                        color: grayscaleWhite,
-                      ),
-                      child: Column(
-                        children: [
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            onEnter: (PointerEvent details) {
-                              // _i30gifController = GifController(vsync: this);
-                              _i30gifController.repeat(
-                                  min: 0,
-                                  max: 300,
-                                  period: Duration(seconds: 10));
-                            },
-                            onExit: (PointerEvent details) {
-                              _i30gifController.animateTo(0,
-                                  duration: Duration(milliseconds: 300));
-                              // _i30gifController.dispose();
-                            },
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/portfolio');
-                              },
-                              child: ClipRRect(
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      onEnter: (PointerEvent details) {
+                        setState(() {
+                          hoveredIndex = 0;
+                        });
+                        _i30jsoncontroller.duration = Duration(seconds: 6);
+                        _i30jsoncontroller.repeat();
+                      },
+                      onExit: (PointerEvent details) {
+                        setState(() {
+                          hoveredIndex = -1;
+                        });
+                        _i30jsoncontroller.duration =
+                            Duration(milliseconds: 1000);
+                        _i30jsoncontroller.animateTo(0);
+                      },
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/portfolio');
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(30),
+                          decoration: BoxDecoration(
+                            boxShadow: hoveredIndex == 0 ? [boxShadow] : [],
+                            borderRadius: BorderRadius.all(Radius.circular(40)),
+                            color: grayscaleWhite,
+                            border: Border.all(
+                              width: 1,
+                              color: hoveredIndex == 0
+                                  ? primaryLight
+                                  : grayscaleWhite,
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
-                                child: GifImage(
-                                  controller: _i30gifController,
-                                  image: AssetImage(
-                                      "assets/gifs/i30_GIF (alternative).gif"),
-                                ),
-                                // Image(
-                                //   image: AssetImage(
-                                //       "assets/gifs/i30_GIF (alternative).gif"),
-                                //   loadingBuilder: (context, child, progress) {
-                                //     return progress == null
-                                //         ? child
-                                //         : SizedBox(
-                                //             width: 20,
-                                //             height: 20,
-                                //             child: CircularProgressIndicator(
-                                //               valueColor:
-                                //                   new AlwaysStoppedAnimation<Color>(
-                                //                       primaryDefault),
-                                //             ),
-                                //           );
-                                //   },
-                                // ),
-                                // Image.asset(
-                                //   "assets/gifs/i30_GIF (alternative).gif",
-                                // ),
+                                child: Lottie.asset(
+                                    'assets/animations/i30_json.json',
+                                    controller: _i30jsoncontroller),
                               ),
-                            ),
+                              SizedBox(height: 30),
+                              Text(
+                                'After activating the Sell Portfolio \nfeature, we recommend that you immediat',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: grayscaleDarkmode,
+                                ),
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                           ),
-                          SizedBox(height: 30),
-                          Text(
-                            'After activating the Sell Portfolio \nfeature, we recommend that you immediat',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: grayscaleDarkmode,
-                            ),
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(width: 46),
                   Expanded(
-                    child: Container(
-                      padding: EdgeInsets.all(30),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(40)),
-                        color: grayscaleWhite,
-                      ),
-                      child: Column(
-                        children: [
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            onEnter: (PointerEvent details) {
-                              // _i50gifController = GifController(vsync: this);
-                              _i50gifController.repeat(
-                                  min: 0,
-                                  max: 300,
-                                  period: Duration(seconds: 10));
-                            },
-                            onExit: (PointerEvent details) {
-                              _i50gifController.animateTo(0,
-                                  duration: Duration(milliseconds: 300));
-                              // _i50gifController.stop();
-                              // _i50gifController.reset();
-                            },
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/portfolio');
-                              },
-                              child: ClipRRect(
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      onEnter: (PointerEvent details) {
+                        setState(() {
+                          hoveredIndex = 1;
+                        });
+                        _i50jsoncontroller.duration = Duration(seconds: 6);
+                        _i50jsoncontroller.repeat();
+                      },
+                      onExit: (PointerEvent details) {
+                        setState(() {
+                          hoveredIndex = -1;
+                        });
+                        _i50jsoncontroller.duration =
+                            Duration(milliseconds: 1000);
+                        _i50jsoncontroller.animateTo(0);
+                      },
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/portfolio');
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(30),
+                          decoration: BoxDecoration(
+                            boxShadow: hoveredIndex == 1 ? [boxShadow] : [],
+                            borderRadius: BorderRadius.all(Radius.circular(40)),
+                            color: grayscaleWhite,
+                            border: Border.all(
+                              width: 1,
+                              color: hoveredIndex == 1
+                                  ? primaryLight
+                                  : grayscaleWhite,
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
-                                child: GifImage(
-                                  controller: _i50gifController,
-                                  image: AssetImage(
-                                    "assets/gifs/i50_GIF (alternative).gif",
-                                  ),
-                                ),
+                                child: Lottie.asset(
+                                    'assets/animations/i50_json.json',
+                                    controller: _i50jsoncontroller),
                               ),
-                            ),
+                              SizedBox(height: 30),
+                              Text(
+                                'After activating the Sell Portfolio \nfeature, we recommend that you immediat',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: grayscaleDarkmode,
+                                ),
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                           ),
-                          SizedBox(height: 30),
-                          Text(
-                            'After activating the Sell Portfolio \nfeature, we recommend that you immediat',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: grayscaleDarkmode,
-                            ),
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   ),
@@ -194,124 +184,123 @@ class _NewuserState extends State<Newuser> with TickerProviderStateMixin {
               Row(
                 children: [
                   Expanded(
-                    child: Container(
-                      padding: EdgeInsets.all(30),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(40)),
-                        color: grayscaleWhite,
-                      ),
-                      child: Column(
-                        children: [
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            onEnter: (PointerEvent details) {
-                              // _i100gifController = GifController(vsync: this);
-                              _i100gifController.repeat(
-                                  min: 0,
-                                  max: 300,
-                                  period: Duration(seconds: 10));
-                            },
-                            onExit: (PointerEvent details) {
-                              _i100gifController.animateTo(0,
-                                  duration: Duration(milliseconds: 300));
-                              // _i100gifController.stop();
-                              // _i100gifController.reset();
-                            },
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/portfolio');
-                              },
-                              child: ClipRRect(
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      onEnter: (PointerEvent details) {
+                        setState(() {
+                          hoveredIndex = 2;
+                        });
+                        _i100jsoncontroller.duration = Duration(seconds: 6);
+                        _i100jsoncontroller.repeat();
+                      },
+                      onExit: (PointerEvent details) {
+                        setState(() {
+                          hoveredIndex = -1;
+                        });
+                        _i100jsoncontroller.duration =
+                            Duration(milliseconds: 1000);
+                        _i100jsoncontroller.animateTo(0);
+                      },
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/portfolio');
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(30),
+                          decoration: BoxDecoration(
+                            boxShadow: hoveredIndex == 2 ? [boxShadow] : [],
+                            borderRadius: BorderRadius.all(Radius.circular(40)),
+                            color: grayscaleWhite,
+                            border: Border.all(
+                              width: 1,
+                              color: hoveredIndex == 2
+                                  ? primaryLight
+                                  : grayscaleWhite,
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
-                                child: GifImage(
-                                  controller: _i100gifController,
-                                  image: AssetImage(
-                                    "assets/gifs/i100_GIG (alternative).gi.gif",
-                                  ),
-                                ),
+                                child: Lottie.asset(
+                                    'assets/animations/i100_json.json',
+                                    controller: _i100jsoncontroller),
                               ),
-                            ),
+                              SizedBox(height: 30),
+                              Text(
+                                'After activating the Sell Portfolio \nfeature, we recommend that you immediat',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: grayscaleDarkmode,
+                                ),
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                           ),
-                          SizedBox(height: 30),
-                          Text(
-                            'After activating the Sell Portfolio \nfeature, we recommend that you immediat',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: grayscaleDarkmode,
-                            ),
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(width: 46),
                   Expanded(
-                    child: Container(
-                      padding: EdgeInsets.all(30),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(40)),
-                        color: grayscaleWhite,
-                      ),
-                      child: Column(
-                        children: [
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            onEnter: (PointerEvent details) {
-                              setState(() {
-                                icustomUrl = "assets/gifs/icustom_GIF.gif";
-                              });
-                              _i30jsoncontroller.duration =
-                                  Duration(seconds: 6);
-                              _i30jsoncontroller.repeat();
-                              // _i30jsoncontroller.forward();
-
-                              // _iCustomgifController = GifController(vsync: this);
-                              // _iCustomgifController.repeat(
-                              //     min: 0,
-                              //     max: 650,
-                              //     period: Duration(seconds: 22));
-                            },
-                            onExit: (PointerEvent details) {
-                              setState(() {
-                                icustomUrl = "assets/images/icustom_GIF_bg.png";
-                              });
-                              _i30jsoncontroller.duration =
-                                  Duration(milliseconds: 300);
-                              _i30jsoncontroller.animateTo(0);
-
-                              // _iCustomgifController.animateTo(0,
-                              //     duration: Duration(milliseconds: 500));
-                            },
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/portfolio');
-                              },
-                              child: ClipRRect(
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      onEnter: (PointerEvent details) {
+                        setState(() {
+                          hoveredIndex = 3;
+                        });
+                        _iCustomjsoncontroller.duration = Duration(seconds: 10);
+                        _iCustomjsoncontroller.repeat();
+                      },
+                      onExit: (PointerEvent details) {
+                        setState(() {
+                          hoveredIndex = -1;
+                        });
+                        _iCustomjsoncontroller.duration =
+                            Duration(milliseconds: 1000);
+                        _iCustomjsoncontroller.animateTo(0);
+                      },
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/portfolio');
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(30),
+                          decoration: BoxDecoration(
+                            boxShadow: hoveredIndex == 3 ? [boxShadow] : [],
+                            borderRadius: BorderRadius.all(Radius.circular(40)),
+                            color: grayscaleWhite,
+                            border: Border.all(
+                              width: 1,
+                              color: hoveredIndex == 3
+                                  ? primaryLight
+                                  : grayscaleWhite,
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
                                 child: Lottie.asset(
-                                    'assets/animations/i30_blur.json',
-                                    controller: _i30jsoncontroller),
-                                // Image.asset(
-                                //   icustomUrl,
-                                // ),
+                                    'assets/animations/iCustom_json.json',
+                                    controller: _iCustomjsoncontroller),
                               ),
-                            ),
+                              SizedBox(height: 30),
+                              Text(
+                                'After activating the Sell Portfolio \nfeature, we recommend that you immediat',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: grayscaleDarkmode,
+                                ),
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                           ),
-                          SizedBox(height: 30),
-                          Text(
-                            'After activating the Sell Portfolio \nfeature, we recommend that you immediat',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: grayscaleDarkmode,
-                            ),
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   ),

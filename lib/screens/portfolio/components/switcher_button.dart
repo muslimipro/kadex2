@@ -20,17 +20,17 @@ class _SwitcherButtonState extends State<SwitcherButton> {
     Text(
       "Day",
       key: UniqueKey(),
-      style: switcherTextStyle,
+      style: blockTextStyle.copyWith(color: primaryDefault),
     ),
     Text(
       "Week",
       key: UniqueKey(),
-      style: switcherTextStyle,
+      style: blockTextStyle.copyWith(color: primaryDefault),
     ),
     Text(
       "Month",
       key: UniqueKey(),
-      style: switcherTextStyle,
+      style: blockTextStyle.copyWith(color: primaryDefault),
     )
   ];
 
@@ -69,7 +69,7 @@ class _SwitcherButtonState extends State<SwitcherButton> {
                       child: Center(
                         child: Text(
                           'Day',
-                          style: switcherBackTextStyle.copyWith(
+                          style: blockSubtitleStyle.copyWith(
                             color: swictherHoveredIndex == 0
                                 ? primaryDefault
                                 : grayscaleDarkmode,
@@ -106,7 +106,7 @@ class _SwitcherButtonState extends State<SwitcherButton> {
                       child: Center(
                         child: Text(
                           'Week',
-                          style: switcherBackTextStyle.copyWith(
+                          style: blockSubtitleStyle.copyWith(
                             color: swictherHoveredIndex == 1
                                 ? primaryDefault
                                 : grayscaleDarkmode,
@@ -143,7 +143,7 @@ class _SwitcherButtonState extends State<SwitcherButton> {
                       child: Center(
                         child: Text(
                           'Month',
-                          style: switcherBackTextStyle.copyWith(
+                          style: blockSubtitleStyle.copyWith(
                             color: swictherHoveredIndex == 2
                                 ? primaryDefault
                                 : grayscaleDarkmode,

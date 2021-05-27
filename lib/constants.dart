@@ -102,13 +102,45 @@ final BoxDecoration borderedBox = BoxDecoration(
   borderRadius: BorderRadius.circular(20),
 );
 
-TextStyle switcherTextStyle = TextStyle(
+TextStyle blockTextStyle = TextStyle(
   fontSize: 18,
   fontWeight: FontWeight.w600,
-  color: primaryDefault,
+  color: grayscaleDark,
 );
-TextStyle switcherBackTextStyle = TextStyle(
+TextStyle blockSubtitleStyle = TextStyle(
   fontSize: 18,
   fontWeight: FontWeight.w400,
   color: grayscaleDarkmode,
 );
+
+class PieDot extends StatelessWidget {
+  final Color color;
+  final String name;
+
+  PieDot({
+    @required this.name,
+    this.color = grayscaleAverage,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final double diameter = 12;
+    return Row(
+      children: [
+        Container(
+          width: diameter,
+          height: diameter,
+          decoration: BoxDecoration(
+            color: this.color,
+            shape: BoxShape.circle,
+          ),
+        ),
+        SizedBox(width: 10),
+        Text(
+          name,
+          style: blockTextStyle.copyWith(fontSize: 14),
+        ),
+      ],
+    );
+  }
+}
