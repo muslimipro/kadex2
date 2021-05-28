@@ -251,7 +251,7 @@ class _NewuserState extends State<Newuser> with TickerProviderStateMixin {
                         setState(() {
                           hoveredIndex = 3;
                         });
-                        _iCustomjsoncontroller.duration = Duration(seconds: 10);
+                        _iCustomjsoncontroller.duration = Duration(seconds: 13);
                         _iCustomjsoncontroller.repeat();
                       },
                       onExit: (PointerEvent details) {

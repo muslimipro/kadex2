@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kadex2/constants.dart';
 import 'package:kadex2/screens/main/components/header.dart';
+import 'package:kadex2/screens/portfolio/components/coin_list_block.dart';
 import 'package:kadex2/screens/portfolio/components/history_block.dart';
 import 'package:kadex2/screens/portfolio/components/portfolio_block.dart';
 import 'package:kadex2/screens/portfolio/components/select_index.dart';
@@ -207,28 +208,7 @@ class _PortfolioScreenState extends State<PortfolioScreen>
                 children: [
                   TopCoinsBlock(),
                   SizedBox(width: 30),
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            SizedBox(width: 30),
-                            Text("List of coins", style: blockTitleStyle),
-                          ],
-                        ),
-                        SizedBox(height: 20),
-                        Container(
-                          height: 637,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(40)),
-                            color: grayscaleWhite,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
+                  CoinListBlock(),
                 ],
               ),
               SizedBox(height: 40),
