@@ -10,6 +10,7 @@ const grayscaleAverage = Color(0xFFA0A3BD);
 const grayscaleLight = Color(0xFFEFF0F6);
 const grayscaleExtralight = Color(0xFFF7F7FC);
 const grayscaleWhite = Color(0xFFFFFFFF);
+const grayscaleOffWhite = Color(0xFFFCFCFC);
 
 const primaryDefault = Color(0xFF773EF5);
 const primaryDark = Color(0xFF4F16CD);

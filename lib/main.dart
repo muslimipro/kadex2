@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kadex2/constants.dart';
 import 'package:kadex2/screens/main/main_screen.dart';
 import 'package:kadex2/screens/portfolio/portfolio.dart';
+import 'package:kadex2/screens/portfolio/rebalancing_days.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MainScreen(),
         '/portfolio': (context) => Portfolio(),
+        '/portfolio/rebalancing_days': (context) => RebalancingDays(),
       },
     );
   }

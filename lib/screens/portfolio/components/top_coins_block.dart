@@ -170,7 +170,10 @@ class TopCoinsBlock extends StatelessWidget {
                   children: [
                     Expanded(
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, "/portfolio/rebalancing_days");
+                        },
                         style: primaryDefaultButtonStyle.copyWith(
                           minimumSize:
                               MaterialStateProperty.all<Size>(Size(0, 60)),

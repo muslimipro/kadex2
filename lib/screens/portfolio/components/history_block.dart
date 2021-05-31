@@ -27,7 +27,9 @@ class HistoryBlock extends StatelessWidget {
             ),
             child: Column(
               children: [
-                SwitcherButton(),
+                SwitcherButton(
+                  switcherTextString: ['Day', 'Week', 'Month'],
+                ),
                 PortfolioLineChart(),
               ],
             ),

@@ -6,6 +6,7 @@ import 'package:kadex2/constants.dart';
 import 'package:kadex2/screens/main/components/header.dart';
 import 'package:kadex2/screens/portfolio/components/coin_list_block.dart';
 import 'package:kadex2/screens/portfolio/components/history_block.dart';
+import 'package:kadex2/screens/portfolio/components/orders_block.dart';
 import 'package:kadex2/screens/portfolio/components/portfolio_block.dart';
 import 'package:kadex2/screens/portfolio/components/select_index.dart';
 import 'package:kadex2/screens/portfolio/components/top_coins_block.dart';
@@ -22,15 +23,6 @@ class _PortfolioScreenState extends State<PortfolioScreen>
   bool activateLoading = false;
   bool recalculateLoading = false;
   List<bool> isSelected = <bool>[true, false, false];
-
-  // Container circleContainer = Container(
-  //   height: 10,
-  //   width: 10,
-  //   decoration: BoxDecoration(
-  //     color: Colors.blue,
-  //     shape: BoxShape.circle,
-  //   ),
-  // );
 
   @override
   void initState() {
@@ -209,6 +201,12 @@ class _PortfolioScreenState extends State<PortfolioScreen>
                   TopCoinsBlock(),
                   SizedBox(width: 30),
                   CoinListBlock(),
+                ],
+              ),
+              SizedBox(height: 40),
+              Row(
+                children: [
+                  OrdersBlock(),
                 ],
               ),
               SizedBox(height: 40),
