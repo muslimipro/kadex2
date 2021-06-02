@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kadex2/constants.dart';
+import 'package:kadex2/common/constants.dart';
 import 'package:kadex2/screens/portfolio/components/line_chart.dart';
 import 'package:kadex2/screens/portfolio/components/switcher_button.dart';
 

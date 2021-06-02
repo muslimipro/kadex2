@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kadex2/constants.dart';
+import 'package:kadex2/common/constants.dart';
+import 'package:kadex2/models/portfolio_model.dart';
 import 'package:kadex2/screens/main/components/header.dart';
 import 'package:kadex2/screens/portfolio/components/coin_list_block.dart';
 import 'package:kadex2/screens/portfolio/components/history_block.dart';
@@ -10,29 +11,18 @@ import 'package:kadex2/screens/portfolio/components/orders_block.dart';
 import 'package:kadex2/screens/portfolio/components/portfolio_block.dart';
 import 'package:kadex2/screens/portfolio/components/select_index.dart';
 import 'package:kadex2/screens/portfolio/components/top_coins_block.dart';
+import 'package:provider/provider.dart';
 
 class PortfolioScreen extends StatefulWidget {
   @override
   _PortfolioScreenState createState() => _PortfolioScreenState();
 }
 
-class _PortfolioScreenState extends State<PortfolioScreen>
-    with TickerProviderStateMixin {
+class _PortfolioScreenState extends State<PortfolioScreen> {
   bool activated = true;
   bool recalculate = false;
   bool activateLoading = false;
   bool recalculateLoading = false;
-  List<bool> isSelected = <bool>[true, false, false];
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   activatePressed() async {
     setState(() {
@@ -181,7 +171,11 @@ class _PortfolioScreenState extends State<PortfolioScreen>
                         ),
                       ),
                       SizedBox(width: 20),
-                      SelectIndex(),
+                      Consumer<PortfolioModel>(
+                        builder: (context, portfolio, child) {
+                          return SelectIndex(portfolio: portfolio);
+                        },
+                      ),
                     ],
                   ),
                   Header(),

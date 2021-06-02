@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:kadex2/constants.dart';
+import 'package:kadex2/common/constants.dart';
 
 class Language extends StatefulWidget {
   @override

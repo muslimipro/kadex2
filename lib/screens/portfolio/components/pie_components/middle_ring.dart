@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kadex2/constants.dart';
+import 'package:kadex2/common/constants.dart';
 
 class MiddleRing extends StatelessWidget {
   final num width;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kadex2/models/portfolio_model.dart';
 import 'package:kadex2/screens/main/components/side_menu.dart';
 import 'package:kadex2/screens/portfolio/portfolio_screen.dart';
+import 'package:provider/provider.dart';
 
 class Portfolio extends StatelessWidget {
   @override
@@ -15,7 +17,10 @@ class Portfolio extends StatelessWidget {
               child: SideMenu(),
             ),
             Expanded(
-              child: PortfolioScreen(),
+              child: ChangeNotifierProvider(
+                create: (context) => PortfolioModel(indexName: "i30"),
+                child: PortfolioScreen(),
+              ),
             ),
           ],
         ),

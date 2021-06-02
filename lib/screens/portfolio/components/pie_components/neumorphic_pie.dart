@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:kadex2/constants.dart';
+import 'package:kadex2/common/constants.dart';
 import 'package:kadex2/screens/portfolio/components/pie_components/middle_ring.dart';
 import 'package:kadex2/screens/portfolio/components/pie_components/progress_rings.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:kadex2/constants.dart';
+import 'package:kadex2/common/constants.dart';
 
 class CoinListBlock extends StatefulWidget {
   @override

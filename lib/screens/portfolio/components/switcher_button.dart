@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kadex2/constants.dart';
+import 'package:kadex2/common/constants.dart';
 
 class SwitcherButton extends StatefulWidget {
   final List<String> switcherTextString;
@@ -97,13 +97,6 @@ class _SwitcherButtonState extends State<SwitcherButton> {
         ],
       ),
     );
-  }
-}
-
-class BackTexts extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
-import 'package:kadex2/constants.dart';
+import 'package:kadex2/common/constants.dart';
 
 class PortfolioBlock extends StatefulWidget {
   @override

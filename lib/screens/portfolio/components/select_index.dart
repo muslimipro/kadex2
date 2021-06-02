@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kadex2/constants.dart';
+import 'package:kadex2/common/constants.dart';
+import 'package:kadex2/models/portfolio_model.dart';
 
 class SelectIndex extends StatefulWidget {
+  final PortfolioModel portfolio;
+  SelectIndex({this.portfolio});
   @override
   _SelectIndexState createState() => _SelectIndexState();
 }
@@ -11,11 +14,17 @@ class _SelectIndexState extends State<SelectIndex> {
   LayerLink _layerLink = LayerLink();
   OverlayEntry overlayEntry;
   var showTooltip = false;
-  var selectedIndex = 0;
+  var selectedIndex;
   var indexName = ['i30', 'i50', 'i100', 'iCustom'];
   var arrowUrl = "assets/icons/index_arrow_down.svg";
 
-  showOverlay(BuildContext context) {
+  @override
+  void initState() {
+    super.initState();
+    selectedIndex = widget.portfolio.indexNumber;
+  }
+
+  showOverlay(BuildContext context, PortfolioModel portfolio) {
     RenderBox renderBox = context.findRenderObject();
     Offset offset = renderBox.localToGlobal(Offset.zero);
     Size size = renderBox.size;
@@ -58,6 +67,7 @@ class _SelectIndexState extends State<SelectIndex> {
                     overlayEntry.remove();
                     setState(() {
                       selectedIndex = 0;
+                      portfolio.changeIndex("i300");
                       showTooltip = !showTooltip;
                       if (showTooltip == true) {
                         arrowUrl = "assets/icons/index_arrow_up.svg";
@@ -109,6 +119,7 @@ class _SelectIndexState extends State<SelectIndex> {
                     overlayEntry.remove();
                     setState(() {
                       selectedIndex = 1;
+                      portfolio.changeIndex("i50");
                       showTooltip = !showTooltip;
                       if (showTooltip == true) {
                         arrowUrl = "assets/icons/index_arrow_up.svg";
@@ -160,6 +171,7 @@ class _SelectIndexState extends State<SelectIndex> {
                     overlayEntry.remove();
                     setState(() {
                       selectedIndex = 2;
+                      portfolio.changeIndex("i100");
                       showTooltip = !showTooltip;
                       if (showTooltip == true) {
                         arrowUrl = "assets/icons/index_arrow_up.svg";
@@ -211,6 +223,7 @@ class _SelectIndexState extends State<SelectIndex> {
                     overlayEntry.remove();
                     setState(() {
                       selectedIndex = 3;
+                      portfolio.changeIndex("iCustom");
                       showTooltip = !showTooltip;
                       if (showTooltip == true) {
                         arrowUrl = "assets/icons/index_arrow_up.svg";
@@ -259,7 +272,7 @@ class _SelectIndexState extends State<SelectIndex> {
             showTooltip = !showTooltip;
             if (showTooltip == true) {
               arrowUrl = "assets/icons/index_arrow_up.svg";
-              showOverlay(context);
+              showOverlay(context, widget.portfolio);
             } else {
               arrowUrl = "assets/icons/index_arrow_down.svg";
               overlayEntry.remove();
@@ -274,7 +287,7 @@ class _SelectIndexState extends State<SelectIndex> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                indexName[selectedIndex],
+                widget.portfolio.indexName,
                 style: TextStyle(
                   color: grayscaleDark,
                   fontSize: 18,
