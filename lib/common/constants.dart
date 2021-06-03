@@ -89,18 +89,23 @@ final BoxShadow boxShadow = BoxShadow(
   offset: Offset(0, 2),
 );
 
-final TextStyle blockTitleStyle = TextStyle(
-  color: grayscaleDark,
-  fontSize: 24,
-  fontWeight: FontWeight.w600,
-);
-
 final BoxDecoration borderedBox = BoxDecoration(
   border: Border.all(
     width: 1,
     color: grayscaleLight,
   ),
   borderRadius: BorderRadius.circular(20),
+);
+
+final TextStyle blockTitleStyle = TextStyle(
+  color: grayscaleDark,
+  fontSize: 24,
+  fontWeight: FontWeight.w600,
+);
+TextStyle titleRegular = TextStyle(
+  color: grayscaleDark,
+  fontSize: 24,
+  fontWeight: FontWeight.w400,
 );
 
 TextStyle blockTextStyle = TextStyle(
@@ -112,6 +117,16 @@ TextStyle blockSubtitleStyle = TextStyle(
   fontSize: 18,
   fontWeight: FontWeight.w400,
   color: grayscaleDarkmode,
+);
+TextStyle footnoteSemibold = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w600,
+  color: grayscaleDark,
+);
+TextStyle footnoteRegular = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w400,
+  color: grayscaleDark,
 );
 
 class PieDot extends StatelessWidget {

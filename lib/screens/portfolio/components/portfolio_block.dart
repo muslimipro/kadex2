@@ -1,8 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:kadex2/common/constants.dart';
+import 'package:kadex2/screens/portfolio/components/sell_portfolio_dialog.dart';
 
 class PortfolioBlock extends StatefulWidget {
   @override
@@ -10,6 +10,7 @@ class PortfolioBlock extends StatefulWidget {
 }
 
 class _PortfolioBlockState extends State<PortfolioBlock> {
+  double _percent = 5.0;
   final _freezeController = AdvancedSwitchController();
   @override
   Widget build(BuildContext context) {
@@ -246,36 +247,7 @@ class _PortfolioBlockState extends State<PortfolioBlock> {
                         // barrierDismissible: false,
                         barrierColor: grayscaleDarkmode.withOpacity(0.3),
                         builder: (BuildContext context) {
-                          return BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-                            child: Dialog(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(40),
-                              ),
-                              elevation: 0,
-                              backgroundColor: Colors.white,
-                              child: Container(
-                                width: 720,
-                                height: 570,
-                                child: Row(
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context, 'close');
-                                      },
-                                      child: Text('close'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context, 'ok');
-                                      },
-                                      child: Text('ok'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
+                          return SellPortfolioDialog(initialPercent: _percent);
                         },
                       ).then((answer) {
                         print(answer);

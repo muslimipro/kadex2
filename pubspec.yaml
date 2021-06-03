@@ -37,6 +37,7 @@ dependencies:
   flutter_gifimage: ^1.0.1
   lottie: ^1.0.1
   flutter_advanced_switch: ^2.0.2+2
+  dotted_border: ^2.0.0
 
 dev_dependencies:
   flutter_test:
