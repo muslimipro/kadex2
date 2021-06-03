@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kadex2/common/constants.dart';
 import 'package:kadex2/screens/main/main_screen.dart';
+import 'package:kadex2/screens/portfolio/components/customize_coinlist.dart';
 import 'package:kadex2/screens/portfolio/components/setup_strategy.dart';
 import 'package:kadex2/screens/portfolio/portfolio.dart';
 import 'package:kadex2/screens/portfolio/rebalancing_days.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/portfolio': (context) => Portfolio(),
         '/portfolio/rebalancing_days': (context) => RebalancingDays(),
         '/portfolio/setup_strategy': (context) => SetUpStrategy(),
+        '/portfolio/customize_coinlist': (context) => CustomizeCoinList(),
       },
     );
   }

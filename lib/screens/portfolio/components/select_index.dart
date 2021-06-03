@@ -67,7 +67,7 @@ class _SelectIndexState extends State<SelectIndex> {
                     overlayEntry.remove();
                     setState(() {
                       selectedIndex = 0;
-                      portfolio.changeIndex("i300");
+                      portfolio.changeIndex("i30");
                       showTooltip = !showTooltip;
                       if (showTooltip == true) {
                         arrowUrl = "assets/icons/index_arrow_up.svg";

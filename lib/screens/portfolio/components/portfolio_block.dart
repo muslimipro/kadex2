@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:kadex2/common/constants.dart';
@@ -238,7 +240,47 @@ class _PortfolioBlockState extends State<PortfolioBlock> {
                 Container(
                   width: double.infinity,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await showDialog<String>(
+                        context: context,
+                        // barrierDismissible: false,
+                        barrierColor: grayscaleDarkmode.withOpacity(0.3),
+                        builder: (BuildContext context) {
+                          return BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+                            child: Dialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(40),
+                              ),
+                              elevation: 0,
+                              backgroundColor: Colors.white,
+                              child: Container(
+                                width: 720,
+                                height: 570,
+                                child: Row(
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context, 'close');
+                                      },
+                                      child: Text('close'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context, 'ok');
+                                      },
+                                      child: Text('ok'),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ).then((answer) {
+                        print(answer);
+                      });
+                    },
                     style: primaryDefaultButtonStyle.copyWith(
                       minimumSize: MaterialStateProperty.all<Size>(Size(0, 60)),
                     ),
