@@ -36,7 +36,13 @@ class _SellPortfolioDialogState extends State<SellPortfolioDialog> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Sell Portfolio', style: blockTitleStyle),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Sell Portfolio', style: blockTitleStyle),
+                  SvgPicture.asset("assets/icons/cancel.svg"),
+                ],
+              ),
               SizedBox(height: 30),
               DottedBorder(
                 color: otherError,

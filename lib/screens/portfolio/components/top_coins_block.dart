@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kadex2/common/constants.dart';
 import 'package:kadex2/models/portfolio_model.dart';
 import 'package:kadex2/screens/portfolio/components/pie_components/neumorphic_pie.dart';
+import 'package:kadex2/screens/portfolio/components/share_portfolio_dialog.dart';
 import 'package:provider/provider.dart';
 
 class TopCoinsBlock extends StatelessWidget {
@@ -229,7 +230,18 @@ class TopCoinsBlock extends StatelessWidget {
                         ),
                         SizedBox(width: 20),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            await showDialog<String>(
+                              context: context,
+                              // barrierDismissible: false,
+                              barrierColor: grayscaleDarkmode.withOpacity(0.3),
+                              builder: (BuildContext context) {
+                                return SharePortfolioDialog();
+                              },
+                            ).then((answer) {
+                              print(answer);
+                            });
+                          },
                           style: primaryLightButtonStyle.copyWith(
                             minimumSize:
                                 MaterialStateProperty.all<Size>(Size(60, 60)),
