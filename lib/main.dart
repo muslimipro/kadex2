@@ -6,8 +6,11 @@ import 'package:kadex2/screens/portfolio/components/setup_strategy.dart';
 import 'package:kadex2/screens/portfolio/portfolio.dart';
 import 'package:kadex2/screens/portfolio/rebalancing_days.dart';
 
+import 'app.dart';
+
 void main() {
-  runApp(MyApp());
+  // runApp(MyApp());
+  runApp(DashboardApp());
 }
 
 class MyApp extends StatelessWidget {

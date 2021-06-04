@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:kadex2/common/constants.dart';
 
 class Profile extends StatefulWidget {
+  final VoidCallback onSignOut;
+  Profile({this.onSignOut});
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -96,6 +98,7 @@ class _ProfileState extends State<Profile> {
                   ),
                   onPressed: () {
                     overlayEntry.remove();
+                    widget.onSignOut();
                     setState(() {
                       showTooltip = !showTooltip;
                     });

@@ -36,7 +36,7 @@ class _SelectIndexState extends State<SelectIndex> {
           link: this._layerLink,
           offset: Offset(0, size.height + 8),
           child: Container(
-            width: buttonWidth,
+            width: renderBox.size.width,
             padding: EdgeInsets.all(0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
@@ -281,7 +281,6 @@ class _SelectIndexState extends State<SelectIndex> {
         },
         style: whiteButtonStyle,
         child: Container(
-          width: buttonWidth,
           padding: EdgeInsets.only(left: 24, right: 18),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
