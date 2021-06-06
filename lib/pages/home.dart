@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:kadex2/pages/customize.dart';
+import 'package:kadex2/pages/exchanges.dart';
 import 'package:kadex2/pages/portfolio.dart';
+import 'package:kadex2/pages/rebalance.dart';
+import 'package:kadex2/pages/strategy.dart';
 import 'package:kadex2/widgets/adaptive_scaffold.dart';
 import 'package:kadex2/widgets/control_buttons.dart';
+import 'package:kadex2/widgets/header_back.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback onSignOut;
@@ -17,6 +23,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _pageIndex = 0;
   List<Widget> _actions = [ControlButtons()];
+  ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,18 +55,12 @@ class _HomePageState extends State<HomePage> {
       ],
       body: _pageAtIndex(_pageIndex),
       onNavigationIndexChange: (newIndex) {
-        setState(() {
-          _pageIndex = newIndex;
-        });
-      },
-      onActionsChange: (newActions) {
-        setState(() {
-          _actions = newActions;
-        });
+        changeNavigationIndex(newIndex);
       },
       onSignOut: () {
         _handleSignOut();
       },
+      scrollController: _scrollController,
     );
   }
 
@@ -88,16 +89,70 @@ class _HomePageState extends State<HomePage> {
     // if (!shouldSignOut) {
     //   return;
     // }
-
     widget.onSignOut();
   }
 
-  static Widget _pageAtIndex(int index) {
+  void changeNavigationIndex(int destinationIndex) {
+    if (destinationIndex != _pageIndex) {
+      List<Widget> newActions = [];
+      switch (destinationIndex) {
+        case 0:
+          newActions = [ControlButtons()];
+          break;
+        case 5:
+          newActions = [
+            HeaderBack(
+              title: "Rebalancing days",
+              backIndex: 0,
+              changeNavigationIndex: (newIndex) {
+                changeNavigationIndex(newIndex);
+              },
+            )
+          ];
+          break;
+        case 6:
+          newActions = [
+            HeaderBack(
+              title: "Set up your strategy",
+              backIndex: 0,
+              changeNavigationIndex: (newIndex) {
+                changeNavigationIndex(newIndex);
+              },
+            )
+          ];
+          break;
+        case 7:
+          newActions = [
+            HeaderBack(
+              title: "Customize coin list",
+              backIndex: 0,
+              changeNavigationIndex: (newIndex) {
+                changeNavigationIndex(newIndex);
+              },
+            )
+          ];
+          break;
+        default:
+      }
+      _scrollController.animateTo(0,
+          duration: Duration(milliseconds: 500), curve: Curves.easeOutBack);
+      setState(() {
+        _pageIndex = destinationIndex;
+        _actions = newActions;
+      });
+    }
+  }
+
+  Widget _pageAtIndex(int index) {
     if (index == 0) {
-      return PortfolioPage(); // DashboardPage();
+      return PortfolioPage(
+        onDestinationChange: (destinationIndex) {
+          changeNavigationIndex(destinationIndex);
+        },
+      );
     }
     if (index == 1) {
-      return Center(child: Text('My exchanges page')); // DashboardPage();
+      return ExchangesPage();
     }
     if (index == 2) {
       return Center(child: Text('Partner network page')); // DashboardPage();
@@ -106,6 +161,13 @@ class _HomePageState extends State<HomePage> {
       return Center(child: Text('Kadex academy page')); // DashboardPage();
     }
 
-    return Center(child: Text('Technical support page'));
+    if (index == 4) {
+      return Center(child: Text('Technical support page')); // DashboardPage();
+    }
+
+    if (index == 5) return RebalanceSettings();
+    if (index == 6) return SetupStrategy();
+    if (index == 7) return CustomizeCoins();
+    return Center(child: Text('Default page'));
   }
 }

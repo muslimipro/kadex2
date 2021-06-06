@@ -3,15 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kadex2/common/constants.dart';
 import 'package:kadex2/screens/main/components/header.dart';
-import 'package:kadex2/widgets/control_buttons.dart';
-
-bool _isLargeScreen(BuildContext context) {
-  return MediaQuery.of(context).size.width > 1100.0;
-}
-
-bool _isMediumScreen(BuildContext context) {
-  return MediaQuery.of(context).size.width > 640.0;
-}
+import 'package:kadex2/widgets/responsive.dart';
 
 class AdaptiveScaffoldDestination {
   final String title;
@@ -30,8 +22,8 @@ class AdaptiveScaffold extends StatefulWidget {
   final int currentIndex;
   final List<AdaptiveScaffoldDestination> destinations;
   final ValueChanged<int> onNavigationIndexChange;
-  final ValueChanged<List<Widget>> onActionsChange;
   final VoidCallback onSignOut;
+  final ScrollController scrollController;
 
   AdaptiveScaffold({
     this.title,
@@ -40,8 +32,8 @@ class AdaptiveScaffold extends StatefulWidget {
     @required this.currentIndex,
     @required this.destinations,
     this.onNavigationIndexChange,
-    this.onActionsChange,
     this.onSignOut,
+    this.scrollController,
   });
 
   @override
@@ -50,9 +42,10 @@ class AdaptiveScaffold extends StatefulWidget {
 
 class _AdaptiveScaffoldState extends State<AdaptiveScaffold> {
   Color sellTextColor = grayscaleDark;
+
   @override
   Widget build(BuildContext context) {
-    if (_isLargeScreen(context)) {
+    if (Responsive.isDesktop(context)) {
       return Row(
         children: [
           Container(
@@ -185,6 +178,7 @@ class _AdaptiveScaffoldState extends State<AdaptiveScaffold> {
           Expanded(
             child: Scaffold(
               body: SingleChildScrollView(
+                controller: widget.scrollController,
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(40, 40, 40, 0),
                   child: Column(
@@ -205,9 +199,10 @@ class _AdaptiveScaffoldState extends State<AdaptiveScaffold> {
         ],
       );
     }
-    if (_isMediumScreen(context)) {
-      return Row(
-        children: [
+    // if (_isMediumScreen(context)) {
+    return Row(
+      children: [
+        if (Responsive.isTablet(context))
           NavigationRail(
             leading: Padding(
               padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
@@ -240,46 +235,39 @@ class _AdaptiveScaffoldState extends State<AdaptiveScaffold> {
             //     height: 24,
             //   ),
             // ),
-            selectedIndex: widget.currentIndex,
+            selectedIndex: widget.currentIndex < 5 ? widget.currentIndex : 0,
             onDestinationSelected: widget.onNavigationIndexChange ?? (_) {},
           ),
-          Expanded(
-            child: Scaffold(
-              body: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(40, 40, 40, 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Header(
-                        actions: widget.actions,
-                        onSignOut: widget.onSignOut,
-                      ),
-                      SizedBox(height: 40),
-                      widget.body,
-                    ],
-                  ),
+        Expanded(
+          child: Scaffold(
+            body: SingleChildScrollView(
+              controller: widget.scrollController,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(40, 40, 40, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Header(
+                      actions: widget.actions,
+                      onSignOut: widget.onSignOut,
+                    ),
+                    SizedBox(height: 40),
+                    widget.body,
+                  ],
                 ),
               ),
             ),
           ),
-        ],
-      );
-    }
-    return Container();
+        ),
+      ],
+    );
+    // }
+    // return Container();
   }
 
   void _destinationTapped(int destinationIndex) {
     if (destinationIndex != widget.currentIndex) {
-      List<Widget> newActions = [];
-      switch (destinationIndex) {
-        case 0:
-          newActions = [ControlButtons()];
-          break;
-        default:
-      }
       widget.onNavigationIndexChange(destinationIndex);
-      widget.onActionsChange(newActions);
     }
   }
 }

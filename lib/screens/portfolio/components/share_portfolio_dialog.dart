@@ -26,10 +26,11 @@ class _SharePortfolioDialogState extends State<SharePortfolioDialog> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Share this with your social Community',
-                      style: blockTitleStyle),
+                  Expanded(
+                    child: Text('Share this with your social Community',
+                        style: blockTitleStyle),
+                  ),
                   SvgPicture.asset("assets/icons/cancel.svg"),
                 ],
               ),
@@ -43,7 +44,6 @@ class _SharePortfolioDialogState extends State<SharePortfolioDialog> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SvgPicture.asset("assets/icons/facebook.svg"),
-                    // SizedBox(width: ,),
                     SvgPicture.asset("assets/icons/instagram.svg"),
                     SvgPicture.asset("assets/icons/telegram.svg"),
                   ],
@@ -55,24 +55,26 @@ class _SharePortfolioDialogState extends State<SharePortfolioDialog> {
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Or copy link',
-                          style: footnoteRegular.copyWith(
-                            color: grayscaleAverage,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Or copy link',
+                            style: footnoteRegular.copyWith(
+                              color: grayscaleAverage,
+                            ),
                           ),
-                        ),
-                        Text(
-                          'https://dribbble.com/shots/15064888',
-                          style: blockSubtitleStyle.copyWith(
-                            color: grayscaleDark,
+                          Text(
+                            'https://dribbble.com/shots/15064888',
+                            style: blockSubtitleStyle.copyWith(
+                              color: grayscaleDark,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     SvgPicture.asset("assets/icons/copy.svg"),
                   ],

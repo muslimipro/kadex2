@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kadex2/common/constants.dart';
 import 'package:kadex2/screens/portfolio/components/line_chart.dart';
 import 'package:kadex2/screens/portfolio/components/switcher_button.dart';
+import 'package:kadex2/widgets/responsive.dart';
 
 class HistoryBlock extends StatelessWidget {
   @override
@@ -19,18 +20,27 @@ class HistoryBlock extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Container(
-            height: 488,
+            height: Responsive.isDesktop(context) ? 488 : 438,
             padding: EdgeInsets.all(30),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(40)),
               color: grayscaleWhite,
             ),
-            child: Column(
+            child: Stack(
               children: [
-                SwitcherButton(
-                  switcherTextString: ['Day', 'Week', 'Month'],
+                Column(
+                  children: [
+                    SwitcherButton(
+                      switcherTextString: ['Day', 'Week', 'Month'],
+                    ),
+                  ],
                 ),
-                PortfolioLineChart(),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: PortfolioLineChart(),
+                ),
               ],
             ),
           ),

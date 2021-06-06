@@ -5,6 +5,8 @@ import 'package:kadex2/models/portfolio_model.dart';
 import 'package:provider/provider.dart';
 
 class CoinListBlock extends StatefulWidget {
+  final ValueChanged<int> onDestinationChange;
+  CoinListBlock({this.onDestinationChange});
   @override
   _CoinListBlockState createState() => _CoinListBlockState();
 }
@@ -132,8 +134,7 @@ class _CoinListBlockState extends State<CoinListBlock> {
                               Expanded(
                                 child: TextButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(context,
-                                        "/portfolio/customize_coinlist");
+                                    widget.onDestinationChange(7);
                                   },
                                   style: primaryDefaultButtonStyle.copyWith(
                                     minimumSize:

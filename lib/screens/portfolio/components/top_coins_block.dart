@@ -7,6 +7,8 @@ import 'package:kadex2/screens/portfolio/components/share_portfolio_dialog.dart'
 import 'package:provider/provider.dart';
 
 class TopCoinsBlock extends StatelessWidget {
+  final ValueChanged<int> onDestinationChange;
+  TopCoinsBlock({this.onDestinationChange});
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -206,11 +208,8 @@ class TopCoinsBlock extends StatelessWidget {
                         Expanded(
                           child: TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(
-                                  context,
-                                  portfolio.indexName == "iCustom"
-                                      ? "/portfolio/setup_strategy"
-                                      : "/portfolio/rebalancing_days");
+                              onDestinationChange(
+                                  portfolio.indexName == "iCustom" ? 6 : 5);
                             },
                             style: primaryDefaultButtonStyle.copyWith(
                               minimumSize:

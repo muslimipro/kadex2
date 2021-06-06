@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:kadex2/common/constants.dart';
+import 'package:kadex2/widgets/responsive.dart';
 
 class PortfolioLineChart extends StatefulWidget {
   @override
@@ -11,15 +12,13 @@ class PortfolioLineChart extends StatefulWidget {
 class _PortfolioLineChartState extends State<PortfolioLineChart> {
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.38,
-      child: Container(
-        padding: EdgeInsets.zero,
-        child: MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: LineChart(
-            mainData(),
-          ),
+    return Container(
+      padding: EdgeInsets.zero,
+      height: Responsive.isDesktop(context) ? 350 : 300,
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: LineChart(
+          mainData(),
         ),
       ),
     );

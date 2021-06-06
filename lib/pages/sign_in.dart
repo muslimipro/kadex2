@@ -13,9 +13,15 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: TextButton(
-            onPressed: () => onSuccess(User(uid: '123')),
-            child: Text('Sign in')),
+        child: Container(
+          width: 200,
+          height: 100,
+          child: Expanded(
+            child: TextButton(
+                onPressed: () => onSuccess(User(uid: '123')),
+                child: Text('Sign in')),
+          ),
+        ),
         // SignInButton(auth: auth, onSuccess: onSuccess),
       ),
     );

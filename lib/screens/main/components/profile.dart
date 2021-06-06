@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kadex2/common/constants.dart';
+import 'package:kadex2/widgets/responsive.dart';
 
 class Profile extends StatefulWidget {
   final VoidCallback onSignOut;
@@ -140,14 +141,15 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          "Kaylynn Culhane",
-          style: TextStyle(
-            color: grayscaleDarkmode,
-            fontSize: 18,
+        if (Responsive.isDesktop(context))
+          Text(
+            "Kaylynn Culhane",
+            style: TextStyle(
+              color: grayscaleDarkmode,
+              fontSize: 18,
+            ),
           ),
-        ),
-        SizedBox(width: 14),
+        if (Responsive.isDesktop(context)) SizedBox(width: 14),
         MouseRegion(
           cursor: SystemMouseCursors.click,
           onEnter: (PointerEvent details) {
