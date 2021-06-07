@@ -114,6 +114,7 @@ class _ExchangesPageState extends State<ExchangesPage> {
                     Container(
                       width: 294,
                       height: 230,
+                      padding: EdgeInsets.symmetric(vertical: 45),
                       decoration: borderedBox.copyWith(
                         border: Border.all(
                           width: 1,

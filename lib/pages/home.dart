@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:kadex2/pages/customize.dart';
 import 'package:kadex2/pages/exchanges.dart';
+import 'package:kadex2/pages/faq.dart';
 import 'package:kadex2/pages/portfolio.dart';
 import 'package:kadex2/pages/rebalance.dart';
 import 'package:kadex2/pages/strategy.dart';
 import 'package:kadex2/widgets/adaptive_scaffold.dart';
 import 'package:kadex2/widgets/control_buttons.dart';
 import 'package:kadex2/widgets/header_back.dart';
+import 'package:kadex2/widgets/support_buttons.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback onSignOut;
@@ -99,6 +101,9 @@ class _HomePageState extends State<HomePage> {
         case 0:
           newActions = [ControlButtons()];
           break;
+        case 4:
+          newActions = [SupportButtons()];
+          break;
         case 5:
           newActions = [
             HeaderBack(
@@ -161,10 +166,7 @@ class _HomePageState extends State<HomePage> {
       return Center(child: Text('Kadex academy page')); // DashboardPage();
     }
 
-    if (index == 4) {
-      return Center(child: Text('Technical support page')); // DashboardPage();
-    }
-
+    if (index == 4) return FaqPage();
     if (index == 5) return RebalanceSettings();
     if (index == 6) return SetupStrategy();
     if (index == 7) return CustomizeCoins();
